@@ -18,8 +18,13 @@ const fetchData = async url => {
 
 const getCityData = cityName => fetchData(getCityUrl(cityName))
 
+const getCityWeather = async cityName => {
+    const [{ Key }] = await getCityData(cityName)
+    const weatherUrl = `http://dataservice.accuweather.com/currentconditions/v1/${Key}?apikey=${APIKey}&language=pt-br`
+    return await fetchData(weatherUrl)
+}
 
-getCityData('São Paulo')
+getCityWeather('São Paulo')
     .then(console.log)
 
 // const getWeatherData = async cityName => {
