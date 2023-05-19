@@ -15,16 +15,10 @@ const showCityWeather = async event => {
     const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }] = await getCityWeather(Key)
 
     const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg" />`
-    if (cityCard.classList.contains('d-none')) {
-        cityCard.classList.remove('d-none')
-    }
 
-    if (IsDayTime) {
-        timeImg.src = './src/day.svg'
-    } else {
-        timeImg.src = './src/night.svg'
-    }
-
+    timeImg.src = IsDayTime ? './src/day.svg' : './src/night.svg'
+ 
+    cityCard.classList.remove('d-none')
     timeIconContainer.innerHTML = timeIcon
     cityNameContainer.textContent = LocalizedName
     cityWeatherContainer.textContent = WeatherText
