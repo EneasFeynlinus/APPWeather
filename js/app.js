@@ -6,7 +6,7 @@ const cityCard = document.querySelector('[data-js="city-card"]')
 const timeImg = document.querySelector('[data-js="time"]')
 const timeIconContainer = document.querySelector('[data-js="time-icon"]')
 
-cityForm.addEventListener('submit', async event => {
+const showCityWeather = async event => {
     event.preventDefault()
 
     const inputValue = event.target.city.value
@@ -21,10 +21,8 @@ cityForm.addEventListener('submit', async event => {
 
     if (IsDayTime) {
         timeImg.src = './src/day.svg'
-        console.log('It is day')
     } else {
         timeImg.src = './src/night.svg'
-        console.log('It is nuight')
     }
 
     timeIconContainer.innerHTML = timeIcon
@@ -34,5 +32,7 @@ cityForm.addEventListener('submit', async event => {
 
     console.log(WeatherText, Temperature.Metric.Value)
     cityForm.reset()
-})
+}
+
+cityForm.addEventListener('submit', showCityWeather)
 
