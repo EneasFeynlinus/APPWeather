@@ -9,7 +9,11 @@ const timeIconContainer = document.querySelector('[data-js="time-icon"]')
 const showCityWeather = async event => {
     event.preventDefault()
 
-    const inputValue = event.target.city.value
+    const inputValue = event.target.city.value.trim()
+
+    if (inputValue.length < 3 || inputValue === '') {
+        alert("Por favor, insira o nome da cidade")
+    }
 
     const [{ LocalizedName, Key }] = await getCityData(inputValue)
     const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }] = await getCityWeather(Key)
@@ -17,7 +21,7 @@ const showCityWeather = async event => {
     const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg" />`
 
     timeImg.src = IsDayTime ? './src/day.svg' : './src/night.svg'
- 
+
     cityCard.classList.remove('d-none')
     timeIconContainer.innerHTML = timeIcon
     cityNameContainer.textContent = LocalizedName
