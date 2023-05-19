@@ -15,8 +15,7 @@ const showCityWeather = async event => {
         alert("Por favor, insira o nome da cidade")
     }
 
-    const [{ LocalizedName, Key }] = await getCityData(inputValue)
-    const [{ WeatherText, Temperature, IsDayTime, WeatherIcon }] = await getCityWeather(Key)
+    const { WeatherText, Temperature, IsDayTime, WeatherIcon, LocalizedName } = await getCityWeather(inputValue)
 
     const timeIcon = `<img src="./src/icons/${WeatherIcon}.svg" />`
 
@@ -28,7 +27,6 @@ const showCityWeather = async event => {
     cityWeatherContainer.textContent = WeatherText
     cityTemperatureContainer.textContent = Temperature.Metric.Value
 
-    console.log(WeatherText, Temperature.Metric.Value)
     cityForm.reset()
 }
 
